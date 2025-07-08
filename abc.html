@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/36d7cb33b2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="header">
+       <div class="container">
+          <nav>
+              <img src="images/logo.jpg" class="logo" alt="Logo">
+              <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#portfolio">Portfolio</a></li>
+                  <li><a href="#contact">Contact</a></li>
+              </ul>
+          </nav>
+          <div class="header-text">
+               <p>Web Developer</p>
+               <h1>Hi, I'm <span>Sanjay</span><br> Kumar From India</h1>
+          </div>
+       </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="about">
+       <div class="container">
+           <div class="row">
+               <div class="about-col-1">
+                   <img class="user" src="images/sanjulaptop.jpg" alt="Sanjay working on laptop">
+               </div>
+               <div class="about-col-2">
+                   <h1 class="sub-title">About Me</h1>
+                   <p>Hi everyone, I am Sanjay Kumar Mohanta from Odisha, India. I am a third-year student pursuing a Bachelor of Technology in Computer Science and Engineering from Modern Institute of Technology and Management [MITM], Bhubaneswar. My knowledge includes JAVA, OOPS, JAVASCRIPT, REACT JS, NODE.JS, EXPRESS.JS, SQL, MONGODB, HTML, CSS, BOOTSTRAP, and DSA. I am proficient in Web Development Technologies as mentioned below.
+                      Apart from coding, I also enjoy Dancing and watching/playing Cricket.</p>
+                   <div class="tab-titles">
+                       <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                       <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                       <p class="tab-links" onclick="opentab('education')">Education</p>
+                   </div>
+                   <div class="tab-contents active-tab" id="skills">
+                       <ul>
+                           <li><span>Web Developer</span><br>Designing Front-end/Back-end interfaces.</li>
+                           <li><span>OOP</span><br>Java/Python with DSA.</li>
+                           <li><span>Data Science</span><br>Machine Learning.</li>
+                       </ul>
+                   </div>
+                   <div class="tab-contents" id="experience">
+                       <ul>
+                           <li><span>2024</span><br>Freshers.</li>
+                       </ul>
+                   </div>
+                   <div class="tab-contents" id="education">
+                       <ul>
+                           <li><span>2022-26</span><br>Pursuing B.Tech in CSE.</li>
+                           <li><span>2022</span><br>Completed 12th from OAV, Ghatagaon - Keonjhar.</li>
+                           <li><span>2020</span><br>Completed 10th from OAV, Saharpada - Keonjhar.</li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Front-end Design</h2>
+                    <p>As a web developer, I can design any type of front-end for web applications using HTML, CSS, and JavaScript.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-server"></i>
+                    <h2>Back-end Design</h2>
+                    <p>I can design efficient back-end systems using Node.js, React, and related technologies.</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-figma"></i>
+                    <h2>UX Design</h2>
+                    <p>I specialize in creating user-friendly interfaces, enhancing the user experience through well-thought-out designs.</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work-1.png" alt="Social Media App">
+                    <div class="layer">
+                        <h3>Social Media App</h3>
+                        <p>The app connects you to talented people around the world. Download it from Playstore.</p>
+                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-2.png" alt="Music App">
+                    <div class="layer">
+                        <h3>Music App</h3>
+                        <p>The app provides a wide range of music from various artists globally.</p>
+                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-3.png" alt="Online Shopping App">
+                    <div class="layer">
+                        <h3>Online Shopping App</h3>
+                        <p>The app connects you to various online shops and helps you purchase products worldwide.</p>
+                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Switching Script -->
+    <script>
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
+
+      function opentab(tabname){
+        for (let tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (let tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+    </script>
+
+</body>
+</html>
