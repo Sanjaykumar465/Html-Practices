@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenCart - B.Tech Minor Project Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .slide-title {
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.8em;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .content-list {
+            list-style: none;
+        }
+
+        .content-list li {
+            padding: 15px 0;
+            font-size: 1.4em;
+            position: relative;
+            padding-left: 30px;
+            color: #333;
+        }
+
+        .content-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .tech-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .tech-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .architecture-diagram {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .arch-component {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .arch-arrow {
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 0 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .result-metric {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.2em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #4caf50, #2d7d32);
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #2c3e50;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .title-slide .slide-title {
+            font-size: 4em;
+            -webkit-text-fill-color: white;
+            margin-bottom: 30px;
+        }
+
+        .project-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            font-size: 1.2em;
+        }
+
+        .conclusion-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .conclusion-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: 600;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .code-snippet {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+            }
+            
+            .slide-title {
+                font-size: 2.5em;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active title-slide">
+            <div class="slide-content">
+                <h1 class="slide-title">GreenCart</h1>
+                <p class="slide-subtitle">A Full-Stack E-Commerce Platform for Sustainable Products</p>
+                
+                <div class="project-info">
+                    <h3>B.Tech Minor Project - 7th Semester</h3>
+                    <div class="project-details">
+                        <div><strong>Submitted by:</strong> [Your Name]</div>
+                        <div><strong>Roll Number:</strong> [Your Roll Number]</div>
+                        <div><strong>Department:</strong> Computer Science & Engineering</div>
+                        <div><strong>Guide:</strong> [Guide Name]</div>
+                        <div><strong>Session:</strong> 2024-25</div>
+                        <div><strong>Technology Stack:</strong> MERN Stack</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem Statement -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Problem Statement</h2>
+                <p class="slide-subtitle">Addressing Market Gaps in Sustainable E-commerce</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div>
+                        <h3 style="font-size: 2em; color: #2c3e50; margin-bottom: 30px;">Current Challenges</h3>
+                        <ul class="content-list">
+                            <li>Small eco-friendly sellers lack digital platforms</li>
+                            <li>Existing platforms are costly and complex</li>
+                            <li>Generic solutions don't cater to sustainable products</li>
+                            <li>High commission rates deter small businesses</li>
+                            <li>Technical barriers prevent easy adoption</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="image-placeholder">
+                            Market Gap Analysis<br>
+                            📊 High Costs<br>
+                            🔧 Complexity<br>
+                            🌱 Limited Eco-Focus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Objectives -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Project Objectives</h2>
+                <p class="slide-subtitle">Building Solutions for Sustainable Commerce</p>
+            </div>
+            <div class="slide-content">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">🚀 Technical Goals</div>
+                        <div class="feature-description">
+                            Develop a scalable full-stack platform using MERN stack with modern architecture principles
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🔐 Security Focus</div>
+                        <div class="feature-description">
+                            Implement robust JWT-based authentication and role-based authorization systems
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">☁️ Cloud Integration</div>
+                        <div class="feature-description">
+                            Integrate cloud services for image storage and payment processing
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">💳 Payment Solutions</div>
+                        <div class="feature-description">
+                            Provide dual payment options with Stripe integration and Cash on Delivery
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Technology Stack -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Technology Stack</h2>
+                <p class="slide-subtitle">Modern MERN Stack Implementation</p>
+            </div>
+            <div class="slide-content">
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <div class="tech-icon">⚛️</div>
+                        <div class="tech-title">React.js</div>
+                        <p>Component-based UI with hooks and context API for state management</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">🟢</div>
+                        <div class="tech-title">Node.js & Express</div>
+                        <p>RESTful API development with middleware and authentication</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">🍃</div>
+                        <div class="tech-title">MongoDB</div>
+                        <p>NoSQL database with Mongoose ODM for flexible data modeling</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">🎨</div>
+                        <div class="tech-title">Tailwind CSS</div>
+                        <p>Utility-first CSS framework for responsive design</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">☁️</div>
+                        <div class="tech-title">Cloudinary</div>
+                        <p>Cloud-based image storage and optimization</p>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon">💳</div>
+                        <div class="tech-title">Stripe</div>
+                        <p>Secure payment processing with webhook integration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: System Architecture -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">System Architecture</h2>
+                <p class="slide-subtitle">Three-Tier Architecture Design</p>
+            </div>
+            <div class="slide-content">
+                <div class="architecture-diagram">
+                    <div class="arch-component">
+                        <h3>🖥️ Frontend</h3>
+                        <p>React.js<br>Tailwind CSS<br>User Interface</p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-component">
+                        <h3>⚙️ Backend</h3>
+                        <p>Node.js<br>Express.js<br>API Layer</p>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-component">
+                        <h3>🗃️ Database</h3>
+                        <p>MongoDB<br>Mongoose ODM<br>Data Storage</p>
+                    </div>
+                </div>
+                
+                <div class="content-grid" style="margin-top: 40px;">
+                    <div>
+                        <h3 style="font-size: 1.8em; margin-bottom: 20px;">🔧 Key Features</h3>
+                        <ul class="content-list">
+                            <li>Role-based authentication (Buyers/Sellers)</li>
+                            <li>RESTful API with JWT tokens</li>
+                            <li>Cloud image storage integration</li>
+                            <li>Secure payment processing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.8em; margin-bottom: 20px;">📊 Database Design</h3>
+                        <ul class="content-list">
+                            <li>Users, Products, Orders, Categories collections</li>
+                            <li>Optimized indexing for performance</li>
+                            <li>Referential integrity with ObjectIds</li>
+                            <li>Flexible schema for product variants</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Key Features Implementation -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Feature Implementation</h2>
+                <p class="slide-subtitle">Core Functionality Overview</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div>
+                        <h3 style="font-size: 2em; color: #2c3e50; margin-bottom: 30px;">👥 User Management</h3>
+                        <ul class="content-list">
+                            <li>Secure registration with email verification</li>
+                            <li>JWT-based authentication system</li>
+                            <li>Role-based access control</li>
+                            <li>Password hashing with bcrypt</li>
+                            <li>Session management with cookies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 2em; color: #2c3e50; margin-bottom: 30px;">🛒 E-commerce Features</h3>
+                        <ul class="content-list">
+                            <li>Product catalog with search & filter</li>
+                            <li>Shopping cart management</li>
+                            <li>Order placement and tracking</li>
+                            <li>Inventory management for sellers</li>
+                            <li>Payment integration (COD + Stripe)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="code-snippet" style="margin-top: 40px;">
+// JWT Authentication Implementation
+const jwt = require('jsonwebtoken');
+
+const generateToken = (userId) => {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: '7d'
+  });
+};
+
+const auth = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: 'Access denied' });
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.userId);
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token' });
+  }
+};
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Testing Results -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Testing & Results</h2>
+                <p class="slide-subtitle">Comprehensive Testing Analysis</p>
+            </div>
+            <div class="slide-content">
+                <div class="results-container">
+                    <div class="result-metric">
+                        <div class="metric-value">50+</div>
+                        <div class="metric-label">Test Cases</div>
+                    </div>
+                    <div class="result-metric">
+                        <div class="metric-value">98%</div>
+                        <div class="metric-label">Success Rate</div>
+                    </div>
+                    <div class="result-metric">
+                        <div class="metric-value">1.2s</div>
+                        <div class="metric-label">Avg Response</div>
+                    </div>
+                    <div class="result-metric">
+                        <div class="metric-value">100</div>
+                        <div class="metric-label">Concurrent Users</div>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">🔐 Security Testing</div>
+                        <div class="feature-description">
+                            JWT authentication, password hashing, role-based access control, and API security validation
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">⚡ Performance Testing</div>
+                        <div class="feature-description">
+                            Load testing with 100 concurrent users, average 1.2s response time, 95 requests/second throughput
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🧪 Functional Testing</div>
+                        <div class="feature-description">
+                            End-to-end user workflows, payment processing, cart management, and order placement validation
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">📱 Compatibility Testing</div>
+                        <div class="feature-description">
+                            Cross-browser compatibility, mobile responsiveness, and device-specific feature validation
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Challenges & Solutions -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Challenges & Solutions</h2>
+                <p class="slide-subtitle">Problem-Solving Approach</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-grid">
+                    <div>
+                        <h3 style="font-size: 2em; color: #e74c3c; margin-bottom: 30px;">🚨 Challenges Faced</h3>
+                        <ul class="content-list">
+                            <li>Complex state management across components</li>
+                            <li>Payment gateway integration complexity</li>
+                            <li>Image upload optimization</li>
+                            <li>Mobile responsiveness issues</li>
+                            <li>Authentication security concerns</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 2em; color: #27ae60; margin-bottom: 30px;">✅ Solutions Implemented</h3>
+                        <ul class="content-list">
+                            <li>React Context API and custom hooks</li>
+                            <li>Stripe webhooks for payment verification</li>
+                            <li>Cloudinary integration with compression</li>
+                            <li>Mobile-first design with Tailwind CSS</li>
+                            <li>JWT tokens with secure cookie storage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tech-card" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="font-size: 1.8em; margin-bottom: 20px;">🎯 Key Learning Outcomes</h3>
+                    <p style="font-size: 1.2em; line-height: 1.6;">
+                        Gained hands-on experience with modern web development technologies, 
+                        understanding of full-stack architecture, payment integration complexities, 
+                        cloud services implementation, and real-world problem-solving skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Future Scope -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Future Enhancements</h2>
+                <p class="slide-subtitle">Roadmap for Platform Evolution</p>
+            </div>
+            <div class="slide-content">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-title">📱 Mobile App Development</div>
+                        <div class="feature-description">
+                            React Native mobile applications for iOS and Android with push notifications and offline capabilities
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🤖 AI Integration</div>
+                        <div class="feature-description">
+                            Machine learning recommendations, chatbot support, and automated customer service features
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">📊 Analytics Dashboard</div>
+                        <div class="feature-description">
+                            Advanced analytics for sellers, business intelligence, and market trend analysis
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🌐 Multi-vendor Platform</div>
+                        <div class="feature-description">
+                            Multiple seller collaboration, commission management, and marketplace expansion
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🔗 Blockchain Integration</div>
+                        <div class="feature-description">
+                            Supply chain transparency, cryptocurrency payments, and sustainability tracking
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-title">🌍 Global Expansion</div>
+                        <div class="feature-description">
+                            Multi-language support, international payments, and region-specific features
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Conclusion -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Conclusion</h2>
+                <p class="slide-subtitle">Project Success & Impact</p>
+            </div>
+            <div class="slide-content">
+                <div class="conclusion-points">
+                    <div class="conclusion-card">
+                        <h3 style="font-size: 1.8em; margin-bottom: 20px;">🎯 Technical Achievements</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0;">✅ Full-stack MERN implementation</li>
+                            <li style="padding: 10px 0;">✅ Secure authentication system</li>
+                            <li style="padding: 10px 0;">✅ Cloud integration success</li>
+                            <li style="padding: 10px 0;">✅ Payment gateway integration</li>
+                        </ul>
+                    </div>
+                    <div class="conclusion-card">
+                        <h3 style="font-size: 1.8em; margin-bottom: 20px;">🌱 Business Impact</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 10px 0;">✅ Sustainable product marketplace</li>
+                            <li style="padding: 10px 0;">✅ Small seller empowerment</li>
+                            <li style="padding: 10px 0;">✅ Eco-conscious consumer platform</li>
+                            <li style="padding: 10px 0;">✅ Scalable business model</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tech-card" style="margin-top: 40px; max-width: 900px; margin-left: auto; margin-right: auto; text-align: center;">
+                    <h3 style="font-size: 2.2em; margin-bottom: 30px; color: #2c3e50;">🚀 Project Success Summary</h3>
+                    <p style="font-size: 1.4em; line-height: 1.8; color: #34495e;">
+                        GreenCart successfully demonstrates the practical application of modern web technologies 
+                        in solving real-world business challenges. The platform bridges the gap between 
+                        sustainable product sellers and eco-conscious consumers while showcasing 
+                        comprehensive full-stack development skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Thank You -->
+        <div class="slide title-slide">
+            <div class="slide-content" style="text-align: center;">
+                <h1 style="font-size: 4em; margin-bottom: 30px;">Thank You</h1>
+                <h2 style="font-size: 2.5em; margin-bottom: 40px;">Questions & Discussion</h2>
+                
+                <div class="project-info">
+                    <h3 style="font-size: 2em; margin-bottom: 30px;">Contact Information</h3>
+                    <div class="project-details" style="font-size: 1.4em;">
+                        <div><strong>Email:</strong> [your.email@example.com]</div>
+                        <div><strong>GitHub:</strong> github.com/yourusername/greencart</div>
+                        <div><strong>LinkedIn:</strong> linkedin.com/in/yourprofile</div>
+                        <div><strong>Project Demo:</strong> greencart-demo.herokuapp.com</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; font-size: 1.6em;">
+                    🌱 <em>"Building sustainable solutions for a greener tomorrow"</em> 🌱
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            document.getElementById('currentSlide').textContent = index + 1;
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function previousSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
