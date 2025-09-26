@@ -1,0 +1,84 @@
+/* #heading1 {
+  color: aqua;
+}
+#heading2 {
+  color: red;
+}
+#heading3 {
+  color: green;
+}
+.demo1 {
+  color: royalblue;
+}
+.demo2 {
+  color: red;
+}
+.demo3 {
+  color: green;
+}
+.demo4 {
+  color: blue;
+}
+.demo5 {
+  color: yellow;
+}
+.demo6 {
+  color: black;
+}
+h3,
+h5,
+span {
+  color: red;
+  background-color: blueviolet;
+} */
+/* 
+* {
+  color: red;
+} */
+
+/* .js {
+  color: red;
+  background-color: black;
+}
+
+#react {
+  color: green;
+  background-color: black;
+} */
+
+/* div>h1{
+    color: red;
+    background-color: black;
+}
+div>h1+p{
+    color: green;
+    background-color: black;
+} */
+/* 
+div h1  {
+  color: aqua;
+}
+div h1+p {
+  color: red;
+}
+div h1+p+span {
+  color: green;
+} */
+
+
+div>p{
+    color: red;
+    background-color: black;
+}
+
+/* adjacent sibilling selector */
+div+p{
+    color: green;
+    background-color: black;
+}
+
+/* general sibilling selector  */
+div~p{
+    color: blue;
+    background-color: black;
+}
