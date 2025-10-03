@@ -3,7 +3,7 @@ h1{
 }
 h1:hover{
     color: blue;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in;
 }
 h1:active{
     color: green;
@@ -13,12 +13,36 @@ div{
     width: 300px;
     height: 300px;
     background-color: aqua;
+    transition: all 2s ease-in-out;
+    border-bottom: 2px solid black;
 }
 div:active{
     background-color: red;
     /* transition: all 10s ease-in-out; */
 }
-/* div:hover{
+div:hover{
     background-color: red;
-    transition: all 0.5s ease-in-out;
+    
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px ;
+    /* transform: scale(1.2); */
+}
+div:hover{
+    background-color: yellow;
+    transition: all 0.5 ease-in-out;
+}
+a:visited{
+    color: red;
+}
+a:active{
+    color: black;
+}
+ol{
+    list-style: none;
+}
+ol li:nth-child(even){
+    color: red;
+}
+/* ol li:nth-child(4){
+    color: red;
 } */
