@@ -1,63 +1,48 @@
 #container {
   width: 300px;
   height: 350px;
+  margin: 20px auto;
   border: 2px solid black;
   background: linear-gradient(135deg, #89f7fe, #66a6ff); /* initial gradient */
   box-sizing: border-box;
   transition: all 1s ease-in-out;
   border-radius: 15px;
   overflow: hidden;
- 
+  box-shadow: 10px 10px 20px 10px rgb(209, 250, 253);
 }
 
 #container:hover {
-  background: linear-gradient(135deg, #667eea, #b1f10fca, #ff758c, #ff7eb3); /* smooth multi-gradient */
+  background: linear-gradient(135deg, #667eea, #b1f10fca, #ff758c, #ff7eb3);
   transition: all 2s ease-in-out;
-  transform: scale(1.05); 
-   box-shadow:2px 2px 2px 2px rgb(0, 0, 0);
-  
+  transform: scale(1.05);
+  box-shadow: 2px 2px 2px gray;
 }
 
 #card {
   width: 150px;
   height: 150px;
-  border: 2px solid black;
-  margin-left: 58px;
-  margin-top: 20px;
+  /* border: 2px solid black; */
+  margin: 20px auto;
   padding: 10px;
-  background-image: url(../_MG_0621\ copy\ \(1\).png);
   background-size: cover;
-  /* background-position: center; */
   border-radius: 10px;
   transition: all 1.2s ease-in-out;
 }
-
+#container:nth-child(2) > #card {
+  background-image: url(../1682741797491.jpg);
+}
+#container:nth-child(1) > #card {
+  background-image: url(../Sanju.png);
+}
+#container:nth-child(3) > #card {
+  background-image: url(../virat.png);
+}
 #container:hover #card {
   border-radius: 50%;
-  /* transform: rotate(10deg) scale(1.1); */
-  box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.4);
+  transform: rotate(10deg) scale(1.1);
+  box-shadow: 0px 0px 20px 20px rgba(235, 5, 5, 0.4);
   z-index: 2;
 }
-#card1{
-  width: 150px;
-  height: 150px;
-  border: 2px solid black;
-  margin-left: 58px;
-  margin-top: 20px;
-  padding: 10px;
-  background-image: url(../1682741797491.jpg);
-  background-size: cover;
-  /* background-position: center; */
-  transition: all 1.2s ease-in-out;
-}
-#container:hover #card1 {
-  border-radius: 50%;
-  /* transform: rotate(10deg) scale(1.1); */
-  box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.4);
-  z-index: 2;
-  transform: scaleX();
-}
-
 
 #name {
   text-align: center;
@@ -65,7 +50,7 @@
   text-transform: uppercase;
   font-size: 15px;
   letter-spacing: 2px;
-  transition: all 1s ease-in-out;
+  transition: all 3s ease-in-out;
 }
 
 #container:hover #name {
@@ -73,15 +58,19 @@
   font-size: 20px;
   transform: scale(1.1);
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transition: all 3s ease-in-out;
 }
 
 #dataa {
+  width: 100%;
+  margin-top: 10px;
   font-size: 20px;
   text-align: center;
   color: brown;
   font-weight: 800;
   text-transform: uppercase;
   transition: all 1.2s ease-in-out;
+  visibility: hidden;
 }
 
 #container:hover #dataa {
@@ -89,4 +78,6 @@
   font-size: 15px;
   transform: translateY(5px);
   text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+  transition: all 1.2s ease-in-out;
+  visibility: visible;
 }
