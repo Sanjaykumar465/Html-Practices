@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .parent {
+        width: 350px;
+        height: 350px;
+        border: 2px solid black;
+        position: relative;
+        left: 200px;
+        top: 200px;
+        background-color: red;
+      }
+      .child1 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: aqua;
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        visibility: hidden;
+      }
+      .child2 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: green;
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        visibility: hidden;
+      }
+      .child3 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: yellow;
+        position: absolute;
+        bottom: -200px;
+        left: -200px;
+        visibility: hidden;
+      }
+      .child4 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: blue;
+        position: absolute;
+        bottom: -200px;
+        right: -200px;
+        visibility: hidden;
+      }
+         .parent:hover{
+            background-color: yellow;
+         }
+      .parent:hover .child1 {
+        visibility: visible;
+      }
+      .parent:hover .child2 {
+        visibility: visible;
+      }
+      .parent:hover .child3 {
+        visibility: visible;
+      }
+      .parent:hover .child4 {
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="child1">1</div>
+      <div class="child2">2</div>
+      <div class="child3">3</div>
+      <div class="child4">4</div>
+    </div>
+  </body>
+</html>
