@@ -5,49 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-
-      *{
+      * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      body{
+      body {
         width: 100vw;
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-
-      
-      .parent {
+      div {
         width: 300px;
         height: 300px;
         border: 2px solid black;
         background-color: red;
         position: relative;
-        /* top: 50%;
-        left: 50%; */
-        transition: all 2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      .child1 {
+      div::before {
+        content: "befor ";
+        position: absolute;
+        left: -150%;
         width: 300px;
         height: 300px;
-        border: 2px solid black;
         background-color: green;
-        position: absolute;
-        right: -300px;
-        bottom: -300px;
-        transition: all 2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      .parent:hover .child1 {
-        bottom: 0px;
+      div::after {
+        content: "after";
+        position: absolute;
+        right: -150%;
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     </style>
   </head>
   <body>
-    <div class="parent">
-      <div class="child1"></div>
-    </div>
+    <div>Present</div>
   </body>
 </html>
